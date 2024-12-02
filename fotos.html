@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+<title>Walter Koopman Fotografie</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="Fotograaf Koopman">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="text-primary"></i></h1>
+                       <img src="img/Walter_Koopman-removebg-preview.png" alt="Logo" style="max-width: 300px;"> 
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="index.html" class="nav-item nav-link ">Home</a>
+                        <a href="fotos.html" class="nav-item nav-link active">Foto's</a>
+                        <a href="boudoir.html" class="nav-item nav-link ">Boudoir</a>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Header Start -->
+            <div class="container-fluid bg-breadcrumb">
+                <div class="container text-center py-5" style="max-width: 900px;">
+                    <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Foto gallerij</h4>
+                    <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active text-primary">Foto's</li>
+                    </ol>    
+                </div>
+            </div>
+            <!-- Header End -->
+        </div>
+        <!-- Navbar & Hero End -->
+        <section class="gallery-section" style="margin-top: 100px;">
+            <div class="gallery-buttons">
+                <button id="btn-portret" onclick="showGallery('portret', this)">Portret</button>
+                <button id="btn-studio" onclick="showGallery('studio', this)">Studio</button>
+                <button id="btn-locatie" onclick="showGallery('locatie', this)">Locatie</button>
+                <button id="btn-zwangerschap" onclick="showGallery('zwangerschap', this)">Zwangerschap</button>
+                <button id="btn-vrijwerk" onclick="showGallery('vrijwerk', this)">Vrij Werk</button>
+            </div>
+        
+            <!-- Galleries -->
+            <div id="portret" class="gallery">
+                <img src="img/Slider1.jpg" alt="Portret 1" onclick="openModal('portret', 0)">
+                <img src="img/Slider2.jpg" alt="Portret 2" onclick="openModal('portret', 1)">
+                <img src="img/Slider3.jpg" alt="Portret 3" onclick="openModal('portret', 2)">
+            </div>
+            <div id="studio" class="gallery hidden">
+                <img src="img/Slider2.jpg" alt="Studio 1" onclick="openModal('studio', 0)">
+                <img src="img/Slider2.jpg" alt="Studio 2" onclick="openModal('studio', 1)">
+            </div>
+            <div id="locatie" class="gallery hidden">
+                <img src="img/Slider2.jpg" alt="Locatie 1" onclick="openModal('locatie', 0)">
+                <img src="img/Slider2.jpg" alt="Locatie 2" onclick="openModal('locatie', 1)">
+            </div>
+            <div id="zwangerschap" class="gallery hidden">
+                <img src="foto7.jpg" alt="Zwangerschap 1" onclick="openModal('zwangerschap', 0)">
+                <img src="foto8.jpg" alt="Zwangerschap 2" onclick="openModal('zwangerschap', 1)">
+            </div>
+            <div id="vrijwerk" class="gallery hidden">
+                <img src="foto9.jpg" alt="Vrij Werk 1" onclick="openModal('vrijwerk', 0)">
+                <img src="foto10.jpg" alt="Vrij Werk 2" onclick="openModal('vrijwerk', 1)">
+            </div>
+        
+            <div id="modal" class="hidden">
+              <span class="close" onclick="closeModal()">×</span>
+              <div class="modal-content">
+                  <img id="modalImage" src="" alt="">
+                  <button class="prev" onclick="prevImage()">❮</button>
+                  <button class="next" onclick="nextImage()">❯</button>
+              </div>
+          </div>
+        
+          <script>
+            let currentGallery = [];
+        let currentIndex = 0;
+        
+        function openModal(galleryId, index) {
+            const gallery = document.querySelector(`#${galleryId}`).querySelectorAll("img");
+            currentGallery = Array.from(gallery);
+            currentIndex = index;
+            showImage();
+            document.getElementById("modal").classList.remove("hidden");
+        }
+        
+        function closeModal() {
+            document.getElementById("modal").classList.add("hidden");
+        }
+        
+        function showImage() {
+            const modalImage = document.getElementById("modalImage");
+            modalImage.src = currentGallery[currentIndex].src;
+            modalImage.alt = currentGallery[currentIndex].alt;
+        }
+        
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+            showImage();
+        }
+        
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % currentGallery.length;
+            showImage();
+        }
+        
+          </script>
+        </section>
+        
+        
+        <style>
+        /* Gallery buttons */
+        .gallery-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px;
+            position: relative; /* Zorgt ervoor dat z-index werkt */
+            z-index: 10; /* Voorkomt dat andere elementen knoppen overlappen */
+        }
+        
+        .gallery-buttons button {
+            background-color: white;
+            color: #000;
+            border: 2px solid #FFD700;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: inline-block; /* Zorgt ervoor dat padding volledig klikbaar is */
+            text-align: center; /* Centraal uitlijnen van tekst */
+            min-width: 100px; /* Zorgt dat knopgebied groter is */
+        }
+        
+        .gallery-buttons button:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-buttons button.active {
+            background-color: #FFD700;
+            color: black;
+            border: 2px solid #FFD700;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Galleries */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        .gallery img {
+            width: 300px;
+            height: auto;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Modal */
+        #modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+        }
+        
+        #modal.hidden {
+            display: none;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+        }
+        
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+        }
+        
+        .prev {
+            left: 10px;
+        }
+        
+        .next {
+            right: 10px;
+        }
+        
+        .prev:hover, .next:hover, .close:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+        
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .gallery img {
+                width: 100%;
+                height: auto;
+            }
+        
+            .gallery-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        
+            .gallery-buttons button {
+                width: 90%;
+                margin: 5px 0;
+                font-size: 1.2em; /* Grotere tekst voor betere leesbaarheid */
+                padding: 15px;
+            }
+        }
+        
+        
+        </style>
+        
+        <script>
+        const galleries = document.querySelectorAll('.gallery');
+        const buttons = document.querySelectorAll('.gallery-buttons button');
+        
+        function showGallery(id, button) {
+            // Update galleries visibility
+            galleries.forEach(gallery => {
+                if (gallery.id === id) {
+                    gallery.classList.remove('hidden');
+                } else {
+                    gallery.classList.add('hidden');
+                }
+            });
+        
+            // Update active button style
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        }
+        </script>
+        <!-- feature End -->
+
+            <!-- Footer Start -->
+            <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+                <div class="container py-5">
+                    <div class="row g-5 mb-5 align-items-center">
+                        <div class="col-lg-2">
+                            <div class="d-flex align-items-center justify-content-center justify-content-lg-end">
+                                <a class="btn btn-secondary btn-md-square rounded-circle me-3" href="https://www.facebook.com/fotograaf.koopman"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-secondary btn-md-square rounded-circle me-3" href="https://www.instagram.com/fotograafkoopman/"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Extra -->
+                        <div class="col-md-6 col-lg-6 col-xl-3">
+                            <div class="footer-item d-flex flex-column">
+                                <h4 class="text-white mb-4">Extra</h4>
+                                <a href="#"><i class="fas fa-angle-right me-2"></i>Algemene voorwaarden</a>
+                                <a href="#"><i class="fas fa-angle-right me-2"></i>Overeenkomst Modelfotografie</a>
+                            </div>
+                        </div>
+                        <!-- Contact Info -->
+                        <div class="col-md-6 col-lg-6 col-xl-3">
+                            <div class="footer-item d-flex flex-column">
+                                <h4 class="text-white mb-4">Contact Info</h4>
+                                <a href="#"><i class="fa fa-map-marker-alt me-2"></i> 123 Street, New York, USA</a>
+                                <a href="mailto:fotograaf.koopman@gmail.com"><i class="fas fa-envelope me-2"></i>fotograaf.koopman@gmail.com</a>
+                                <a href="tel:+31610974189"><i class="fas fa-phone me-2"></i> +31 6 10974189</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer End -->
+            
+            <!-- Copyright Start -->
+            <div class="container-fluid copyright py-4">
+                <div class="container">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-6 text-center text-md-start mb-md-0">
+                            <span class="text-body"><a href="#" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>Walter Koopman</a>, All right reserved.</span>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end text-body">
+                            <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                            <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                            <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                            Designed By <a class="border-bottom text-white" href="https://Spectux.com">Spectux</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-secondary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    </body>
+
+</html>
